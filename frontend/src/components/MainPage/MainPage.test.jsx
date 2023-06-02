@@ -12,13 +12,10 @@ import ShoppingCartIcon from './Header/ShoppingCartIcon';
 
 import LandingPart from './Landing/LandingPart';
 
-describe('MainPage component', () => {
-   
-    it('Landing renders', () => {
-        render(<BrowserRouter><LandingPart/></BrowserRouter>);
+describe('MainPage tests', () => {
+    it('MainPage renders', () => {
+        render(<BrowserRouter><MainPage/></BrowserRouter>);
         const linkElement = screen.getByText('Вхід');
         expect(linkElement).toBeInTheDocument();
     });
-  
-   
 });
