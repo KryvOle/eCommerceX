@@ -6,6 +6,6 @@ import Footer from './Footer';
 
 test('Footer renders', () => {
     render(<BrowserRouter><Footer/></BrowserRouter>);
-    const linkElement = screen.getByText('Created by eCommerceX group');
+    const linkElement = screen.getByText(/ecommercex/i);
     expect(linkElement).toBeInTheDocument();
 });

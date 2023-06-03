@@ -5,8 +5,8 @@ import PageTitle from './PageTitle';
 
 describe('PageTitle tests', () => {
     it('should render', () => {
-        render(<BrowserRouter><PageTitle title="Чоловічі годинники"/></BrowserRouter>);
-        const linkElement = screen.getByText('Чоловічі годинники');
+        render(<BrowserRouter><PageTitle title="ABCDE"/></BrowserRouter>);
+        const linkElement = screen.getByText('ABCDE');
         expect(linkElement).toBeInTheDocument();
     });
 });

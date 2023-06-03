@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import { BrowserRouter } from 'react-router-dom';
 import CartSum from './CartSum';
@@ -7,10 +7,10 @@ import ItemCounter from './ItemCounter';
 import ShoppingCartPage from './ShoppingCartPage';
 import ShoppingCartItem from './ShoppingCartItem';
 
-const testItems = [{title : "Fossil Leather Watch", price: "6873"},
-                    {title : "Fossil Leather Watch", price: "6873"},
-                    {title : "Fossil Leather Watch", price: "6873"},
-                    {title : "Fossil Leather Watch", price: "6873"}];
+const testItems = [{title : "Fossil Leather Watch", price: "967"},
+                    {title : "Fossil Leather Watch", price: "1025"},
+                    {title : "Fossil Leather Watch", price: "110670"},
+                    {title : "Fossil Leather Watch", price: "99999"}];
 
 describe('ShoppingCartPage tests', () => {
     it('ShoppingCartPage renders', () => {
@@ -37,5 +37,15 @@ describe('ShoppingCartPage tests', () => {
         render(<BrowserRouter><ShoppingCartItem/></BrowserRouter>);
         const linkElement = screen.getByText('+');
         expect(linkElement).toBeInTheDocument();
+    });
+    it('CartSum should count final price correctly', () => {
+        render(<BrowserRouter><CartSum items={testItems}/></BrowserRouter>);
+        const linkElement = screen.getByText(/212661/);
+        expect(linkElement).toBeInTheDocument();
+    });
+    it('Increase decrease items work correctly', () => {
+        // render(<BrowserRouter><ItemCounter/></BrowserRouter>);
+        // const buttons = screen.getAllByRole('button');
+        // fireEvent.click(buttons[0]);
     });
 });

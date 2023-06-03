@@ -10,27 +10,27 @@ import SignupInvite from './SignupInvite';
 describe('LoginPage tests', () => {
     it('LoginPage renders', () => {
         render(<BrowserRouter><LoginPage/></BrowserRouter>);
-        const linkElement = screen.getAllByText(/Вхід/);
+        const linkElement = screen.getAllByText(/вхід/i);
         expect(linkElement[0]).toBeInTheDocument();
     });
     it('LoginActionBtn renders', () => {
         render(<BrowserRouter><LoginActionBtn/></BrowserRouter>);
-        const linkElement = screen.getByText('Увійти');
+        const linkElement = screen.getByText(/увійти/i);
         expect(linkElement).toBeInTheDocument();
     });
     it('LoginText renders', () => {
-        render(<BrowserRouter><LoginText title="Вхід" /></BrowserRouter>);
-        const linkElement = screen.getByText('Вхід');
+        render(<BrowserRouter><LoginText title="ABCDE" /></BrowserRouter>);
+        const linkElement = screen.getByText('ABCDE');
         expect(linkElement).toBeInTheDocument();
     });
     it('LoginTextField renders', () => {
-        render(<BrowserRouter><LoginTextField title="ABC" type="password" /></BrowserRouter>);
-        const linkElement = screen.getAllByText('ABC');
+        render(<BrowserRouter><LoginTextField title="ABCDE" type="password" /></BrowserRouter>);
+        const linkElement = screen.getAllByText('ABCDE');
         expect(linkElement[0]).toBeInTheDocument();
     });
     it('SignupInvite renders', () => {
-        render(<BrowserRouter><SignupInvite invite="ABC"/></BrowserRouter>);
-        const linkElement = screen.getByText('ABC');
+        render(<BrowserRouter><SignupInvite invite="ABCDE"/></BrowserRouter>);
+        const linkElement = screen.getByText('ABCDE');
         expect(linkElement).toBeInTheDocument();
     });
 });

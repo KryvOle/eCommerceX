@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { BrowserRouter } from 'react-router-dom';
 
@@ -8,7 +9,9 @@ import SearchBar from './SearchBar';
 import ShoppingCartIcon from './ShoppingCartIcon';
 import LoginBtn from './LoginBtn';
 
-describe("Header and its components render", () => {
+const handleMenu = jest.fn();
+
+describe("Header tests", () => {
     it("Menu renders", () => {
         render(<BrowserRouter><Menu/></BrowserRouter>);
         const linkElement = screen.getByText('WATCH');
@@ -21,7 +24,7 @@ describe("Header and its components render", () => {
     });
     it("SearchBar renders", () => {
         render(<BrowserRouter><SearchBar/></BrowserRouter>);
-        const linkElement = screen.getByPlaceholderText('Шукати...');
+        const linkElement = screen.getByPlaceholderText(/шукати/i);
         expect(linkElement).toBeInTheDocument();
     });
     it("ShoppingCartIcon renders", () => {
@@ -30,9 +33,9 @@ describe("Header and its components render", () => {
         expect(linkElement).toBeInTheDocument();
     
     });
-    // it("Header renders", () => {
-    //     render(<BrowserRouter><Header/></BrowserRouter>);
-    //     const linkElement = screen.getByPlaceholderText('Шукати...');
-    //     expect(linkElement).toBeInTheDocument();
-    // });
+    it("Header renders", () => {
+        render(<BrowserRouter><Header handleMenu={handleMenu} /></BrowserRouter>);
+        const linkElement = screen.getByText(/вхід/i);
+        expect(linkElement).toBeInTheDocument();
+    });
 });

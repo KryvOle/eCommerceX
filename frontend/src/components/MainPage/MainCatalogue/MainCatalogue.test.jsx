@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { BrowserRouter } from 'react-router-dom';
 import AddItemDialog from './AddItemDialog';
@@ -11,9 +12,11 @@ import ItemCard from './ItemCard';
 import FileUpload from './FileUpload';
 import MainPageCatalogue from './MainPageCatalogue';
 
-describe('MainPageCatalogue and its components render', () => {
+const testFunction = jest.fn();
+
+describe('MainPageCatalogue and its components tests', () => {
     it('AddItemDialog renders', () => {
-        render(<BrowserRouter><AddItemDialog open={true}/></BrowserRouter>);
+        render(<BrowserRouter><AddItemDialog open={true} onClose={testFunction}/></BrowserRouter>);
         const linkElement = screen.getByText('Додати товар');
         expect(linkElement).toBeInTheDocument();
     });
@@ -23,9 +26,15 @@ describe('MainPageCatalogue and its components render', () => {
         expect(linkElement).toBeInTheDocument();
     });
     it('AdminAddItemBtn renders', () => {
-        render(<BrowserRouter><AdminAddItemBtn/></BrowserRouter>);
+        render(<BrowserRouter><AdminAddItemBtn onClick={testFunction}/></BrowserRouter>);
         const linkElement = screen.getByText('Додати товар');
         expect(linkElement).toBeInTheDocument();
+    });
+    it('AdminAddItemBtn works', () => {
+        render(<BrowserRouter><AdminAddItemBtn onClick={testFunction}/></BrowserRouter>);
+        const button = screen.getByRole('button');
+        userEvent.click(button);
+        expect(testFunction).toHaveBeenCalled();
     });
     it('SelectSortingOptrion renders', () => {
         render(<BrowserRouter><SelectSortingOption/></BrowserRouter>);
